@@ -1,0 +1,274 @@
+/*Se ocupa el esquema de modulos y utilidades.
+Creamos una paleta de colores con custom propieties*/
+:root {
+    --blanco: #fff;/*Se crea la variable y se le asigana un valor*/
+    --negro: #212121;
+    --primario: #ffc107;
+    --secundario: #0097a7;
+    --gris: #757575;
+    --grisClaro: #dfe9f3;
+}
+/*<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>> GLOBALES >>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<*/
+html {
+	font-size: 62.5%;/*Reinicia el valor de las fuentes*/
+    box-sizing: border-box;/*Hace que no se modifique el area de un elemento*/
+    scroll-snap-type: y mandatory;/*Se agrega un scroll snap en vertical el cual se va a parar en alguna
+    seccion del html cada que se dé un poco de scroll*/
+}
+*, *:before, *:after {/*los asteriscos son selectores que aplican propiedades a todo el documento, 
+    el before y after son pseudoelementos que no se ven pero aplican las propiedades universalmente*/
+    box-sizing: inherit;
+}
+/*<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>> SCROLL SNAP >>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<*/
+.servicios, .navegacion-principal, .formulario {
+    scroll-snap-align: center;/*el scroll va a parar en el centro de cada sección*/
+    scroll-snap-stop: always;/*el scroll siempre va a tener stop para no pasarse en sección*/
+}
+body {
+	font-size: 16px;/*Reinicia el valor de las fuentes*/
+    font-family: 'Krub', sans-serif;/*se carga la fuente que se exportó*/
+    background-image: linear-gradient(to top, var(--grisClaro) 0%, var(--blanco) 100%);/*se agrega un fondo
+    desvanecido primero se indica de donde empieza (to top) se indica el primer color y un porcentaje
+    despues se agrega el segundo color y cuanto se va a ir desvaneciendo*/
+}
+/*<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>> contenedor >>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<*/
+.contenedor{/*Clase contenedor, asignamos valores a los enlaces para centrar el contenido*/
+    /*width: 120rem; esto hace que el contenedor limite el ancho a 1200px*/
+    /*modificamos el max-widht anterior porque si se hacia pequeña la pantalla forzaba 
+    los 1200px*/
+    max-width: 120rem;/*quiere decir que el ancho máximo será de hasta 1200px si es que hay px disponibles*/
+    margin: 0 auto;/*margen, centrar el contenido*/
+}
+.sombra {
+    /*-webkit-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.45); prefijo para compatibilidad con Chrome
+    -moz-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.45); prefijo para compatibilidad de la propiedad con mozilla*/ 
+    box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.45);/*Agrega sombra al main*/
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+/*<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>> botones >>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<*/
+.boton {
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 3rem;
+    font-size: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;/*se cambia el texto a mayusculas*/
+    font-weight: 700;/*se da un formato de negritas al texto*/
+    border-radius: .5rem;
+    width: 90%;/*hace que el boton abarque el 90% del ancho de la página despues de los 768px*/
+    text-align: center;
+
+    border: none;/*se le quita el borde al boton del formulario tipo submit*/
+}
+@media (min-width: 768px) {
+    .boton {
+        width: auto;/*Hacemos que se reinicie el valor del tamaño del boton despues de los 768px*/
+    }
+}
+.boton:hover {
+    cursor: pointer;
+}
+
+/*<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>> TIPOGRAFIA >>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<*/
+h1 {
+    font-size: 3.8rem;
+}
+h2 {
+    font-size: 2.8rem;
+}
+h3 {
+    font-size: 1.8rem;
+}
+h1, h2, h3 {
+    text-align: center;
+}
+/*<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>> TITULOS >>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<*/
+.titulo span {
+    font-size: 2rem;
+}
+/*<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>> UTILIDADES >>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<*/
+.w-sm-100 {/*selector llamado width small 100*/
+    width: 100%;/*es una utilidad que hace que el ancho sea del 100%*/
+}
+@media (min-width: 768px) {
+    .w-sm-100 {
+        width: auto;/*hace que el ancho sea automático*/
+    }
+}
+.flex {
+    display: flex;/*alinea en forma vertical*/
+}
+.alinear-derecha {
+    justify-content: flex-end;/*hace que el boton se desplace a la derecha*/
+}
+/*<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>> NAVEGACION PRINCIPAL >>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<*/
+.nav-bg {/*se crea este selector para que este sea el padre del nav y se aplique todo el fondo*/
+    background-color: var(--negro);/*color de fondo del nav*/
+}
+.navegacion-principal {/*clase que se aplica a los elementos enlaces*/
+    display: flex;/*elemento que habilita nuevas propiedades para acomodar en ejes, en este caso de manera horizontal*/
+    align-items: center; /*este elemento alineará los elementos al centro*/
+    flex-direction: column; /*hace que el contenido se direccione en columnas pero deja inservible a justify-content*/
+}
+@media (min-width: 480px) {
+    .navegacion-principal {
+        flex-direction: row;/*Indicamos que queremos resetear los elementos*/
+        justify-content: space-evenly;/*mueve el contenido horizontalmente*/
+    }
+}
+.navegacion-principal a {/*Clase del nav, se aplica solo a los enlaces*/
+    /*display: block;
+    text-align: center; es lo mismo que display flex en este caso*/
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 2rem;/*amplia la letra*/
+    font-weight: 700;
+    padding: 1rem;
+}
+.navegacion-principal a:hover {/*va a aplicar un evento al enlace cada que se ponga el cursor encima de este*/
+    background-color: var(--primario);/*le asigna un color amarillo cada que pasa el mouse encima del enlace*/
+    color: var(--negro);/*va a cambiar el color del texto cada que se pase el mouse encima del texto*/
+}
+/*<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>> HERO >>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<*/
+.hero { /*clase padre*/
+    background-image: url(../img/hero.jpg);/*para agregar una imagen se usa estapropiedad y dentro de los
+    parentesis de la url tenemos que salirnos de la carpeta css para estar al nivel de la carpeta img*/
+    background-repeat: no-repeat;/*Hace que la imagen no se repita o se vea multiples veces*/
+    background-size: cover;/*hace que cubra todo llena el tamaño correspondiente de la imagen*/
+    height: 450px;/* se le deja una altura de 450px*/
+    /*padding: 20px; da un espacio interno de 20px, pero afecta al momento de posicionar un elemento
+    con las coordenadas en el selector hijo*/
+    position: relative; /*el selector padre tiene que tener una posicion relativa para que el hijo 
+    pueda posicionar un elemento fijo*/
+    margin-bottom: 2rem;
+}
+.contenido-hero { /*clase hijo*/
+    position: absolute;/*hace que un elemento se empiece a posicionar fijamente ante el padre*/
+    /*background-color: rgba(0, 0, 0, .7);se agrega la capa ocupando una sintaxys anterior*/
+    background-color: rgb(0 0 0 / 70%);/*se coloca la capa usando nuev sintaxys*/
+    /*coordenadas para posiconar el contenido-hero*/
+    /*1er forma es usar las siguientes propiedades. bottom: 0; left: 0; top: 0; right: 0;*/
+    /*2da forma para posicionar un elemento es*/
+    width: 100%;
+    height: 100%;
+    /*Alinear elementos tanto vertical como horizontal*/
+    display: flex;/*cuando se ocupa display: flex; con justify-content alineas verticalmente siempre que no se ocupe column*/
+    flex-direction: column;/*en este caso alineamos los elementos en columnas vamos a ocupar la propiedad align-items*/
+    align-items: center;/*aqui centramos los elementos horizontalmente*/
+    justify-content: center;/*aquí centramos los elementos verticalmente*/
+}
+.contenido-hero h2,
+.contenido-hero p {
+    color: var(--blanco);
+}
+.contenido-hero .ubicacion {
+    display: flex;
+    align-items: flex-end;/*alineamos verticalmente haciendo que quede hasta abajo del icono*/
+}
+
+/*<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>> SERVICIOS >>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<*/
+@media (min-width: 768px) {/*despues de 768px se aplican las propiedades del selector .servicios*/
+    .servicios {
+        display: grid;/*se habilitan las propiedades del grid*/
+        /*grid-template-columns: 300px 300px ;va a especificar cuantas columnas van a habilitar y su tamaño
+        grid-template-rows: 200px 800px; va a especificar las filas y su tamaño
+        sintaxis anterior*/
+        /*grid: 200px 800px / 300px 300px;especifica cuantas filas y columnas son y su tamaño esta sintaxis es alternativa*/
+        grid-template-columns: repeat(3, 1fr);/*indica que se van a repetir 3 veces 1 columna en 1 fracción 
+        quiere decir que va a crear 1 fracción a tres columnas en todo el ancho*/
+        gap: 1rem;/*genera un espacio de 20px de separación entre filas y columnas 
+        column-gap: 2rem; tambien da un espacio de separación*/
+    }
+}
+.servicio {
+    display: flex;/*habilitamos propiedades flexbox que alinea todo de izq a der*/
+    flex-direction: column;/*indicamos que va a trabajar en columnas*/
+    align-items: center;/*acomodamos los elementos en horizontal*/
+
+}
+.servicio h3{
+    color: var(--secundario);
+    font-weight: 400;
+}
+.servicio p{
+    line-height: 2;/*hace un interlineado*/
+    text-align: center;
+}
+.servicio .iconos {/*aplicando estilos a los iconos*/
+    height: 15rem;/*altura de 150px*/
+    width: 15rem;/*ancho de 150ox*/
+    background-color: var(--primario);
+    border-radius: 50%;
+    display: flex;/*habilitamos propiedades flexbox que alinea todo de izq a der. habilitando flex-direction-row que es la propiedad default*/
+    justify-content: space-evenly;/*acomodamos los elementos en vertical*/
+    align-items: center;/*Acomodamos los elementos en horizontal*/
+    box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.45);
+}
+/*<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>> FORMULARIO >>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<*/
+.formulario {
+    background-color: var(--gris);
+    width: min( 60rem, 100%);/*la función min() va a evaluar los parametros de 60rem o 100% y va a agarrar
+    el valor más pequeño y se ahorran mediaqueries*/
+    margin: 0 auto;/*va a centrar el contenido del formulario generalmente se va a ocupar cuando los 
+    elementos sean formularios y el padre no sea un display: flex*/
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.45);
+}
+.formulario fieldset {
+    border: none;/*quita el borde del fieldset*/
+}
+.formulario legend {
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;/*se transforma el texto a mayusculas*/
+    font-weight: 700;/*se usa una fuente en negritas*/
+    margin-bottom: 2rem;
+    color: var(--primario);
+}
+@media (min-width: 768px) {/*media querie para que estas propiedades solo se apliquen depues de 768px*/
+    .contenedor-campos {
+        display: grid;/*se agrega la propiedad grid para realizar el acomodo por columnas a los input*/
+        grid-template-columns: repeat(2, 1fr);/*vamos a generar dos columnas que abarquen 1fraccion o la mitad del tamaño*/
+        grid-template-rows: auto auto 20rem;/*vamos a generar el tamaño de las siguientes filas*/
+        column-gap: 1rem;/*separacion de cada fila y columna*/
+    }
+
+    .campo:nth-child(3),/*nth-child va a aplicar las mismas propiedades a las filas especificadas en este caso es la fila 3*/
+.campo:nth-child(4) {/*vamos a aplicar las mismas propiedaddes a la fila 4*/
+    grid-column: 1 / 3;/*hace que la columna se expanda de la coordenada 1 a la 3*/
+}
+}
+.campo {
+    margin-bottom: 1rem;
+}
+.campo label {
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block;/*va a tomar todo el espacio disponible acomodar los elementos uno abajo del otro*/
+}
+.campo textarea {
+    height: 20rem;
+}
+.input-text {
+    width: 100%;
+    border: none;
+    padding: 1.5rem;
+    border-radius: .5rem;
+}
+.enviar .boton {
+    width: 100%;/*hace que el boton tome un ancho del 100%*/
+}
+
+/*Ejemplo de selector
+.campo input[type="text"] {
+    background-color: red;   
+}*/
+/*<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>> FOOTER >>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<*/
+footer {
+    text-align: center;
+}
